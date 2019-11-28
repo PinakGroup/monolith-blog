@@ -5,6 +5,7 @@ import com.gl.idp.blog.repository.BlogRepository;
 import com.gl.idp.blog.repository.RoleRepository;
 import com.gl.idp.blog.repository.UserRepository;
 import com.gl.idp.blog.dto.UserDTO;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.web.bind.annotation.*;
@@ -15,16 +16,13 @@ import javax.servlet.http.HttpServletRequest;
 @RestController
 @CrossOrigin
 @RequestMapping(value = "/users/")
+@RequiredArgsConstructor
 public class UserController {
 
-    @Autowired
-    UpUserService upUserService;
-    @Autowired
-    UserRepository userRepository;
-    @Autowired
-    BlogRepository blogRepository;
-    @Autowired
-    RoleRepository roleRepository;
+    private final UpUserService upUserService;
+    private final UserRepository userRepository;
+    private final BlogRepository blogRepository;
+    private final RoleRepository roleRepository;
 
     @GetMapping("/list")
     public Object userList(HttpServletRequest request){

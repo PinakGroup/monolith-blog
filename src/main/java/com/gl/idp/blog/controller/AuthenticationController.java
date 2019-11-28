@@ -6,6 +6,7 @@ import com.gl.idp.blog.model.User;
 import com.gl.idp.blog.service.EncryptionService;
 import com.gl.idp.blog.service.UpUserService;
 import com.gl.idp.blog.service.UserDetailsServiceImpl;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -18,17 +19,14 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @CrossOrigin
+@RequiredArgsConstructor
 public class AuthenticationController {
-    @Autowired
-    private AuthenticationManager authenticationManager;
-    @Autowired
-    private JwtTokenUtil jwtTokenUtil;
-    @Autowired
-    private UserDetailsServiceImpl userDetailsServiceImpl;
-    @Autowired
-    UpUserService upUserService;
-    @Autowired
-    EncryptionService encryptionService;
+
+    private final AuthenticationManager authenticationManager;
+    private final JwtTokenUtil jwtTokenUtil;
+    private final UserDetailsServiceImpl userDetailsServiceImpl;
+    private final UpUserService upUserService;
+    private final EncryptionService encryptionService;
 
     @PostMapping(value = "/authenticate")
     public ResponseEntity<?> createAuthenticationToken(@RequestBody UserDTO authenticationRequest) throws Exception {
